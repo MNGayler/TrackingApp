@@ -1,35 +1,24 @@
-import "./App.css";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import "./styles/App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import FoodItems from "./pages/FoodItems";
+import ViewFoodItem from "./pages/ViewFoodItem";
+import UpdateFoodItem from "./pages/UpdateFoodItem";
+import AddFoodItem from "./pages/AddFoodItem"
 
 function App() {
-  const [listOfFoodItems, setListOfFoodItems] = useState([]);
-
-  useEffect(() => {
-    axios.get("http://localhost:4001/fooditems").then((response) => {
-      setListOfFoodItems(response.data);
-    });
-  }, []);
-
-  return (
-    <div className="App">
-      <div className="foodContainer">
-        {listOfFoodItems.map((value, key) => {
-          return (
-            <div className="food">
-              <div className="food_name">{value.food_name}</div>
-              <div className="food_image">{value.image}</div>
-              <div className="food_button">
-                <button>View</button>
-                <button>Update</button>
-                <button>Delete</button>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  );
+  return  <div className="App">
+    <Router>
+      <Routes>
+        <Route path="/fooditems" element={<FoodItems />} />
+        <Route path="/fooditems/updatefooditem" element={<UpdateFoodItem />} />
+        <Route path="/fooditems/viewfooditem" element={<ViewFoodItem />} />
+        <Route path="/fooditems/addfooditem" element={<AddFoodItem />} />
+      </Routes>
+    </Router>
+    
+    
+    
+     </div>
 }
 
 export default App;
