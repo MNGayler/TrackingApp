@@ -10,8 +10,8 @@ function App() {
     <Router>
       <Routes>
         <Route path="/fooditems" element={<FoodItems />} />
-        <Route path="/fooditems/updatefooditem" element={<UpdateFoodItem />} />
-        <Route path="/fooditems/viewfooditem" element={<ViewFoodItem />} />
+        <Route path="/fooditems/updatefooditem/:id" element={<UpdateFoodItem />} />
+        <Route path="/fooditems/viewfooditem/:id" element={<ViewFoodItem />} />
         <Route path="/fooditems/addfooditem" element={<AddFoodItem />} />
       </Routes>
     </Router>

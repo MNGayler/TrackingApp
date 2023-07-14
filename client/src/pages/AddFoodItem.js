@@ -3,8 +3,11 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import "../styles/form.css";
 import * as Yup from "yup";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const AddFoodItem = () => {
+  let navigate = useNavigate();
+
   //create empty inital values object for add food item form
   const initialValues = {
     food_name: "",
@@ -16,15 +19,19 @@ const AddFoodItem = () => {
   // create a schema to validate the form on the client side using yup
   const validationSchema = Yup.object().shape({
     food_name: Yup.string().required(),
-    energy: Yup.number().typeError("Energy must be a number! Calories per 100g").required(),
-    fibre: Yup.number().typeError("Fibre must be a number! mg per 100g").required(),
+    energy: Yup.number()
+      .typeError("Energy must be a number! Calories per 100g")
+      .required(),
+    fibre: Yup.number()
+      .typeError("Fibre must be a number! mg per 100g")
+      .required(),
     image: Yup.string(),
   });
 
   // posts the form data to the database
   const onSubmit = (data) => {
     axios.post("http://localhost:4001/fooditems", data).then((response) => {
-      console.log("form sent");
+      navigate("/fooditems");
     });
   };
 
